@@ -12,6 +12,6 @@ function sum = sincinterp(t, fs,ts,Ts,wm, m,n)
   c = Ts*wm/pi;                      % useful constant
   sum = 0 ;                          % initialize the summation
   for k=m:1:n                        % loop over the samples
-     p = **FIXME**;                  % look at the def of sinc(x)  
-     sum = **FIXME**;                % actually doing it
+     p = (wm/pi)*(t-ts(m)-(k-m)*Ts);                  % look at the def of sinc(x)  
+     sum = sum + fs(k)*c*sinc(p);                % actually doing it
   end;

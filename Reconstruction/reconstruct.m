@@ -7,6 +7,7 @@
 function reconstruct(f,prefix)
 
   fm     = func_bandlimit(f); % approx bandlimit
+  wm     = 2*pi*fm;           % bandlimit in radians
   tstart = 0;                 % start time: arbitrary
   tstop  = 30/f;              % stop time: arbitrary
 
@@ -25,7 +26,7 @@ function reconstruct(f,prefix)
 
 % Reconstruct at these times  % Ugly code warning
   for n=1:length(tr)
-    fr(n) = sincinterp(**FIXME**);
+    fr(n) = sincinterp(tr(n),fsample,tsample,ts,wm,1,nsamples);
   end;
   fo = func(tr,f);            % Find original func values
   err = fr-fo;                % Hence a vector of errors
