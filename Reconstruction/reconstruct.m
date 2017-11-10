@@ -32,6 +32,7 @@ function reconstruct(f,prefix)
   err = fr-fo;                % Hence a vector of errors
 
 % Plotting stuff
+  figure()
   hold off;
   subplot(3,1,1),plot(tr, fo, '-','LineWidth',2,'Color',[0 0 .7]);hold on;
   subplot(3,1,1),plot(tsample, fsample,'O','LineWidth',2,'Color',[.7 0 0]);

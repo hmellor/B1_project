@@ -1,0 +1,6 @@
+Task 1.1
+
+Increasing the sample rate did not significantly reduce the error 
+(it marginally reduced the transient errors at either end).
+
+There are large errors at the end because they are discontinuities.
