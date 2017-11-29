@@ -11,6 +11,6 @@
   kmax = length(eta)-1;
   A    = ones(n,1);      % 1st column of matrix
   for k=1:kmax
-     A =[A, **FIXME** ]; % Add another COLUMN to right of A
+     A =[A, 2*cos(k*theta) ]; % Add another COLUMN to right of A
   end
-  g = **FIXME**;         % Matrix vector multiplication
+  g = A*eta;         % Matrix vector multiplication

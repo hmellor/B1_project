@@ -7,9 +7,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   function eta = etacoeffs(N,thetac)
 % These are the Fourier coefficients for the taps
-  eta(1) = **FIXME**;      % Central value
+  eta(1) = thetac/pi;      % Central value
 %
   for k=1:(N-1)/2
-    eta(k+1) = **FIXME**;  % One side
+    eta(k+1) = 1/pi/k * sin(k*thetac);  % One side
   end
   eta=eta';                % Make it a COLUMN vector
