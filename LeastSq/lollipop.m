@@ -17,6 +17,7 @@
   index = [-kmax+1:1:kmax-1];
 
 % Plot as lollipops
+  figure(2)
   hold off;
   set(gca, 'FontSize', 18);
   plot(index, h, 'O','MarkerSize',7,'LineWidth',6,'Color',[0.7 0 0]); hold on;

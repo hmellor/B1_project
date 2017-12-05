@@ -32,12 +32,14 @@
 
 % Optimize the parameters by minimizing the cost function
 % There are other matlab minimizers that could be used!!
-  finaleta = fminsearch(@costfunction, **FIXME** );
+  cost = @(eta)costfunction(eta,thetapass,gdpass,Wp,thetastop,gdstop,Ws);
+  finaleta = fminsearch(cost,initialeta);
 
 % Work out the response values over all the range
   g   = gactual(finaleta,theta);
 
 % Plotting stuff
+  figure(1)
   hold off;
   set(gca, 'FontSize', 18);
   plot(thetapass, gdpass, '-','LineWidth',4,'Color',[0 0.7 0]); hold on;
@@ -51,8 +53,7 @@
   fracs = floor(100*(fs-floor(fs))); %two dec places
   fr_file = sprintf('lsqlp_fr_%d_%d-%d.eps',N,fracp,fracs);
   fprintf('Frequency response saved to %s\n',fr_file);
-  print('-depsc', fr_file); 
-pause; 
+  print('-depsc', fr_file);
 
 % Save plot of impulse response
   ir_fileprefix = sprintf('lsqlp_ir_%d_%d-%d',N,fracp,fracs);
