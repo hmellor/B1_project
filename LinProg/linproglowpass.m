@@ -25,21 +25,21 @@
 % desired values, to make column vector gd
   gdpass  = ones(length(thetapass),1); % desired g in pass
   gdstop  = zeros(length(thetastop),1);% ditto in stop
-  gd      = **FIXME**;                 % combined column vector
+  gd      = [gdpass;gdstop];                 % combined column vector
 
 % inverse weight values, to make vector m
   inversewpass  = (1/Wp)*ones(length(thetapass),1); % in pass
   inversewstop  = (1/Ws)*ones(length(thetastop),1); % in pass
-  m = **FIXME**;
+  m = [inversewpass;inversewstop];
 
 % Construct the matrix C (we did this earlier as part of gactual.m)!
 % Remember to use all theta values in pass and stop bands
   C = buildCmatrix(N, [thetapass;thetastop]);
 
 % Now build the A,b and c for linprog
-  A = **FIXME**;
-  b = **FIXME**;
-  c = **FIXME**;
+  A = [C -m;-C -m];
+  b = [gd;-gd];
+  c = [zeros(0.5*(N+1),1);1];
 
 % Now use linprog!
   x = linprog(c,A,b);
@@ -53,6 +53,7 @@
   g   = gactual(eta,theta);
 
 % Plotting stuff
+  figure(1)
   hold off;
   set(gca, 'FontSize', 18);
   plot(thetapass, gdpass, '-','LineWidth',4,'Color',[0 0.7 0]); hold on;
@@ -67,7 +68,6 @@
   fr_file = sprintf('linprog_fr_%d_%d-%d.eps',N,fracp,fracs);
   fprintf('Frequency response saved to %s\n',fr_file);
   print('-depsc', fr_file); 
-pause; 
 
 % Save plot of impulse response
   ir_fileprefix = sprintf('linprog_ir_%d_%d-%d',N,fracp,fracs);

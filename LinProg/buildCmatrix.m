@@ -10,5 +10,5 @@
   n    = length(theta);
   C = ones(n,1);            % 1st column of matrix
   for k=1:(N-1)/2
-     C =[C, **FIXME**]; % Add another column to right of C
+     C =[C, 2*cos(k*theta)]; % Add another column to right of C
   end
