@@ -29,7 +29,7 @@
 
 % inverse weight values, to make vector m
   inversewpass  = (1/Wp)*ones(length(thetapass),1); % in pass
-  inversewstop  = (1/Ws)*ones(length(thetastop),1); % in pass
+  inversewstop  = (1/Ws)*ones(length(thetastop),1); % in stop
   m = [inversewpass;inversewstop];
 
 % Construct the matrix C (we did this earlier as part of gactual.m)!
@@ -39,7 +39,7 @@
 % Now build the A,b and c for linprog
   A = [C -m;-C -m];
   b = [gd;-gd];
-  c = [zeros(0.5*(N+1),1);1];
+  c = [zeros((N+1)/2,1);1];
 
 % Now use linprog!
   x = linprog(c,A,b);
