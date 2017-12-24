@@ -65,9 +65,9 @@
 % Save plot as colour postscript
   fracp = floor(100*(fp-floor(fp))); %two dec places
   fracs = floor(100*(fs-floor(fs))); %two dec places
-  fr_file = sprintf('linprog_fr_%d_%d-%d.eps',N,fracp,fracs);
+  fr_file = sprintf('linprog_fr_%d_%d-%d.svg',N,fracp,fracs);
   fprintf('Frequency response saved to %s\n',fr_file);
-  print('-depsc', fr_file); 
+  print('-dsvg', fr_file); 
 
 % Save plot of impulse response
   ir_fileprefix = sprintf('linprog_ir_%d_%d-%d',N,fracp,fracs);
