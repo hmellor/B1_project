@@ -22,6 +22,7 @@
   gd  = gdesired(theta,thetac); % desired filter
 
 % Step (4) Plot the actual and desired filter
+  figure(1)
   hold off;
   set(gca, 'FontSize', 18);
   plot(theta, gd, '-','LineWidth',2,'Color',[0 0 0]); hold on;
@@ -31,12 +32,13 @@
 % Get a meaningful filename
   num  = floor(fc);
   frac = floor(100*(fc-num)); %two dec places
-  fr_file = sprintf('fourierlowpass_fr_%d_%dp%d.eps',N,num,frac);
+  fr_file = sprintf('fourierlowpass_fr_%d_%dp%d.svg',N,num,frac);
   fprintf('Frequency response saved to %s\n',fr_file);
 % Save plot as colour postscript
-  print('-depsc', fr_file); 
-  pause; 
+  print('-dsvg', fr_file); 
 
 % Step (5) Save plot of impulse response as a lollipop plot
   ir_prefix = sprintf('fourierlowpass_ir_%d_%dp%d',N,num,frac);
   lollipop(ir_prefix,eta);
+  
+% Step (6) Save h values in vector

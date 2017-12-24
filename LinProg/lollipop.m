@@ -28,9 +28,9 @@
   line([min(index)-1,max(index)+1],[0,0],'LineWidth',2,'Color',[0 0 0]);
   axis( [min(index)-1,max(index)+1, min(h)-0.1,max(h)+0.1]);
 
-% Save it for posterity in fileprefix.eps
-  filename=sprintf('%s.eps',fileprefix);
-  print('-depsc', filename); 
+% Save it for posterity in fileprefix.svg
+  filename=sprintf('%s.svg',fileprefix);
+  print('-dsvg', filename); 
   fprintf('Lollipop saved to %s\n',filename);
 
 
