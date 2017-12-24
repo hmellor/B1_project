@@ -40,7 +40,3 @@
 % Step (5) Save plot of impulse response as a lollipop plot
   ir_prefix = sprintf('fourierlowpass_ir_%d_%dp%d',N,num,frac);
   lollipop(ir_prefix,eta);
-  
-% Step (6) Save eta values in file for later use
-  eta_fourier = eta;
-  save('eta_fourier','eta_fourier')

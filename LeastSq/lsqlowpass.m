@@ -59,10 +59,6 @@
 % Save plot of impulse response
   ir_fileprefix = sprintf('lsqlp_ir_%d_%d-%d',N,fracp,fracs);
   lollipop(ir_fileprefix,finaleta);
-  
-% Save eta values in file for later use
-  eta_lsq = finaleta;
-  save('eta_lsq','eta_lsq')
 
 
 

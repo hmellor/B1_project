@@ -72,10 +72,6 @@
 % Save plot of impulse response
   ir_fileprefix = sprintf('linprog_ir_%d_%d-%d',N,fracp,fracs);
   lollipop(ir_fileprefix,eta);
-  
-% Save eta values in file for later use
-  eta_linprog = eta;
-  save('eta_linprog','eta_linprog')
 
 
 

@@ -6,14 +6,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   function lollipop(fileprefix,eta)
 
-% Fix up left side --- there is a nicer way
+% Generate (and save) h for plotting taps
   kmax = length(eta);
-  % fix up the left hand 
-  for k=1:kmax-1
-	  h(k) = eta(kmax+1-k);
-  end
-% Fix up right side 
-  h = [h,eta'];  % ROW VECTOR
+  h = [fliplr(eta(2:kmax,1)')';eta];
+  hlinprog=h; save('hlinprog','hlinprog')
   index = [-kmax+1:1:kmax-1];
 
 % Plot as lollipops
