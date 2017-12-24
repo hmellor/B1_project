@@ -17,9 +17,9 @@
 
 % theta vectors over range and bands
   dtheta = pi/nsteps;
-  theta  = [0:dtheta:pi]';         % theta vector for entire range
-  thetapass = [0:dtheta:thetap]';  % for pass band
-  thetastop = [thetas:dtheta:pi]'; % for stop band
+  theta  = (0:dtheta:pi)';         % theta vector for entire range
+  thetapass = (0:dtheta:thetap)';  % for pass band
+  thetastop = (thetas:dtheta:pi)'; % for stop band
 
 % desired values
   gdpass = ones(length(thetapass),1); % desired g in pass
@@ -33,8 +33,9 @@
 % Optimize the parameters by minimizing the cost function
 % There are other matlab minimizers that could be used!!
   cost = @(eta)costfunction(eta,thetapass,gdpass,Wp,thetastop,gdstop,Ws);
-  finaleta = fminsearch(cost,initialeta);
-
+  options = optimset('MaxFunEvals',10e10,'MaxIter',10e10);
+  finaleta = fminsearch(cost,initialeta,options);
+  
 % Work out the response values over all the range
   g   = gactual(finaleta,theta);
 
@@ -58,6 +59,10 @@
 % Save plot of impulse response
   ir_fileprefix = sprintf('lsqlp_ir_%d_%d-%d',N,fracp,fracs);
   lollipop(ir_fileprefix,finaleta);
+  
+% Save eta values in file for later use
+  eta_lsq = finaleta;
+  save('eta_lsq','eta_lsq')
 
 
 
