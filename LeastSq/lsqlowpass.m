@@ -27,13 +27,13 @@
 
 % base the initial guess for the coefficients on
 % truncated Fourier with cut off midway into transition band
-  initialeta = etacoeffs(N,0.5*(thetap+thetas)); % get the eta values
+  initialeta = etacoeffs(N,(thetap+thetas)/2); % get the eta values
 
 
 % Optimize the parameters by minimizing the cost function
 % There are other matlab minimizers that could be used!!
   cost = @(eta)costfunction(eta,thetapass,gdpass,Wp,thetastop,gdstop,Ws);
-  options = optimset('MaxFunEvals',10e10,'MaxIter',10e10);
+  options = optimset('MaxFunEvals',1e10,'MaxIter',1e10,'TolFun',1e-10);
   finaleta = fminsearch(cost,initialeta,options);
   
 % Work out the response values over all the range
