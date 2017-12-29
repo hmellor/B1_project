@@ -38,5 +38,5 @@ function reconstruct(f,prefix)
   subplot(3,1,1),plot(tsample, fsample,'O','LineWidth',2,'Color',[.7 0 0]);
   subplot(3,1,2),plot(tr, fr, '-','LineWidth',2,'Color',[0 0.7 0]);
   subplot(3,1,3),plot(tr, err,'-','LineWidth',2,'Color',[0.6 0 0.6]);
-  filename=sprintf('%s.eps',prefix);
-  print('-depsc', filename);  % Save as colour postscript
+  filename=sprintf('%s.svg',prefix);
+  print('-dsvg', filename);  % Save as colour postscript
