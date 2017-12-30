@@ -3,7 +3,7 @@
 %   Inputs:  t time 
 %            f frequency
 %   Outputs: function value r 
-% DWM 31/10/11
+% DWM 14/9/11
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function r = func(t,f)
   v = 2*pi*f*t; 
