@@ -25,8 +25,8 @@
   axis( [min(index)-1,max(index)+1, min(h)-0.1,max(h)+0.1]);
 
 % Save it for posterity in fileprefix.svg
-  filename=sprintf('%s.svg',fileprefix);
-  print('-dsvg', filename); 
+  filename=sprintf('%s.fig',fileprefix);
+  savefig([filename]); 
   fprintf('Lollipop saved to %s\n',filename);
 
 
