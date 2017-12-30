@@ -52,9 +52,9 @@
 % Save plot as colour postscript
   fracp = floor(100*(fp-floor(fp))); %two dec places
   fracs = floor(100*(fs-floor(fs))); %two dec places
-  fr_file = sprintf('lsqlp_fr_%d_%d-%d.svg',N,fracp,fracs);
+  fr_file = sprintf('lsqlp_fr_%d_%d-%d.fig',N,fracp,fracs);
   fprintf('Frequency response saved to %s\n',fr_file);
-  print('-dsvg', fr_file);
+  savefig([fr_file])
 
 % Save plot of impulse response
   ir_fileprefix = sprintf('lsqlp_ir_%d_%d-%d',N,fracp,fracs);

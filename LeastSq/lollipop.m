@@ -16,7 +16,7 @@
   figure(2)
   hold off;
   set(gca, 'FontSize', 18);
-  plot(index, h, 'O','MarkerSize',7,'LineWidth',6,'Color',[0.7 0 0]); hold on;
+  plot(index, h, 'O','MarkerSize',5,'LineWidth',6,'Color',[0.7 0 0]); hold on;
   xlabel('k'); ylabel('Impulse response h[k]');
   for k=1:length(h)
     line([index(k),index(k)],[0,h(k)],'LineWidth',3,'Color',[0.7 0 0]);

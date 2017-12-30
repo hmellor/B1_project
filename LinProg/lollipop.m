@@ -16,7 +16,7 @@
   figure(2)
   hold off;
   set(gca, 'FontSize', 18);
-  plot(index, h, 'O','MarkerSize',7,'LineWidth',6,'Color',[0.7 0 0]); hold on;
+  plot(index, h, 'O','MarkerSize',5,'LineWidth',6,'Color',[0.7 0 0]); hold on;
   xlabel('k'); ylabel('Impulse response h[k]');
   for k=1:length(h)
     line([index(k),index(k)],[0,h(k)],'LineWidth',3,'Color',[0.7 0 0]);
@@ -25,8 +25,8 @@
   axis( [min(index)-1,max(index)+1, min(h)-0.1,max(h)+0.1]);
 
 % Save it for posterity in fileprefix.svg
-  filename=sprintf('%s.svg',fileprefix);
-  print('-dsvg', filename); 
+  filename=sprintf('%s.fig',fileprefix);
+  savefig([filename])
   fprintf('Lollipop saved to %s\n',filename);
 
 

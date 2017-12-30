@@ -32,10 +32,10 @@
 % Get a meaningful filename
   num  = floor(fc);
   frac = floor(100*(fc-num)); %two dec places
-  fr_file = sprintf('fourierlowpass_fr_%d_%dp%d.svg',N,num,frac);
+  fr_file = sprintf('fourierlowpass_fr_%d_%dp%d.fig',N,num,frac);
   fprintf('Frequency response saved to %s\n',fr_file);
 % Save plot as colour postscript
-  print('-dsvg', fr_file); 
+  savefig([fr_file])
 
 % Step (5) Save plot of impulse response as a lollipop plot
   ir_prefix = sprintf('fourierlowpass_ir_%d_%dp%d',N,num,frac);
