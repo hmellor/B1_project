@@ -1,20 +1,20 @@
 %% Sampling Optimiser
-% A script for visualising and finding the highest sampling and cut off
+% A script for visualising and finding the highest sampling and bandlimit
 % frequencies that minimise error and avoid diminishing returns. 
 %%
 
 % Set variables for use in later code
 f=1000;                                    % function frequency (arbitrary)
 dc = 0.1;                                  % size of steps in coefficient
-sc = 2:dc:5;                               % sample frequency coefficients
-cc = 1:dc:3;                               % cut off frequency coefficients
-[X,Y] = meshgrid(sc,cc);                   % 2D mesh of the 2 variables
-err=zeros(length(cc),length(sc));          % preallocate error matrix
+sc = 2:dc:5;                               % sample frequency coefficient
+bc = 1:dc:3;                               % bandlimit frequency coefficient
+[X,Y] = meshgrid(sc,bc);                   % 2D mesh of the 2 variables
+err=zeros(length(bc),length(sc));          % preallocate error matrix
 
 % Calculate area of error in reconstruction for each value in mesh
-for i = 1:length(cc)
+for i = 1:length(bc)
     for j = 1:length(sc)
-        err(i,j) = reconstruct(f,cc(i),sc(j));
+        err(i,j) = reconstruct(f,bc(i),sc(j));
         figure(1)
         subplot(1,2,1)
         surf(X,Y,err)                      % plot the surface
@@ -22,8 +22,8 @@ for i = 1:length(cc)
         set(gca,'ydir','reverse')          % flip axis for better view
         set(gca,'Zscale','log')            % log - data spans large range
         title('Integral of error^2 from Reconstruction')
-        xlabel('Sample Coefficients')
-        ylabel('Cut-off Coefficients')
+        xlabel('Sample Coefficient')
+        ylabel('Bandlimit Coefficient')
         zlabel('I_{error} = \int error^2 dt')
         colorbar;
         drawnow;                           % realtime addition to figure
