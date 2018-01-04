@@ -23,24 +23,23 @@ function I = reconstruct(f,bf,sf)
 % Sample the function
   tsample = tstart:ts:tstop;
   fsample = func(tsample,f);
-  nsamples = length(fsample);
 
 % Determine times tr where you want reconstruction
   tstep = ts/10;              % say 10 per orig sample
   tr = tstart:tstep:tstop;
   
 % Reconstruct at these times
-  fr = sincinterpv(tr,fsample,tsample,ts,wm);
+  fr = sincinterpv(tr,fsample,tsample,ts,wm); % interpolate samples
   fo = func(tr,f);            % Find original func values
   err = fr-fo;                % Hence a vector of errors
   
 % Quantify error
   errsq = err.^2;             % Square error values so no negative error
   I = trapz(tr,errsq);
-  
+%{
+% Plot everything
   figure()
   hold off;
-  
   subplot(3,1,1),plot(tr, fo, '-','LineWidth',2,'Color',[0 0 .7]);hold on;
   subplot(3,1,1),plot(tsample, fsample,'O','LineWidth',2,'Color',[.7 0 0]);
   title('Original function with samples')
@@ -57,3 +56,4 @@ function I = reconstruct(f,bf,sf)
   xlabel('Time (s)')
   ylabel('Amplitude')
   set(gca,'FontName','Arial')
+  %}

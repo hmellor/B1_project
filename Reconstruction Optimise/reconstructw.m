@@ -3,6 +3,7 @@
 % Script to reconstruct func using sincinterp
 % DWM 15/9/11
 % Inputs:  wt - type of sinc windowing to use
+%           M - window limit (multiples of Ts)
 %           f - frequency of signal
 %          bf - multiple of f to bandlimit at
 %          sf - multiple of fm to sample at
@@ -30,7 +31,7 @@ function I = reconstructw(wt,M,f,bf,sf)
   tr = tstart:tstep:tstop;
   
 % Reconstruct at these times
-  fr = sincinterpw(wt,M,tr,fsample,tsample,ts,wm);
+  fr = sincinterpw(wt,M,tr,fsample,tsample,ts,wm); % interpolate samples
   fo = func(tr,f);            % Find original func values
   err = fr-fo;                % Hence a vector of errors
   

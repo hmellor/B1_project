@@ -1,10 +1,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Output: reconstructed siglnal 
-% Inputs: tr times at which reconstruction is wanted
-%         fs vector of samples
-%         ts vector of sample times
-%         Ts sample period
-%         wm bandlimit
+% Inputs: wt - type of sinc windowing to use
+%          M - window limit (multiples of Ts)
+%         tr - times at which reconstruction is wanted
+%         fs - vector of samples
+%         ts - vector of sample times
+%         Ts - sample period
+%         wm - bandlimit
+% UNFINISHED
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function reconstruction = sincinterpw(wt,M,tr,fs,ts,Ts,wm)
   for i=1:length(tr)  

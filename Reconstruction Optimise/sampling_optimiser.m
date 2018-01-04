@@ -21,8 +21,10 @@ for i = 1:length(bc)
         set(gca,'xdir','reverse')          % flip axis for better view
         set(gca,'ydir','reverse')          % flip axis for better view
         set(gca,'Zscale','log')            % log - data spans large range
+        set(gca,'FontName','Arial')
+        set(gca,'FontSize',16)
         title('Integral of error^2 from Reconstruction')
-        xlabel('Sample Coefficient')
+        xlabel('Sampling Coefficient')
         ylabel('Bandlimit Coefficient')
         zlabel('I_{error} = \int error^2 dt')
         colorbar;
@@ -36,10 +38,12 @@ subplot(1,2,2)
 surf(X,Y,graderr)                          % plot the surface
 set(gca,'xdir','reverse')                  % flip axis for better view
 set(gca,'ydir','reverse')                  % flip axis for better view
-set(gca,'Zscale','log')                    % log - data spans large range
+%set(gca,'Zscale','log')                    % log - data spans large range
+set(gca,'FontName','Arial')
+set(gca,'FontSize',16)
 title('Absolute gradient of integral of error^2')
-xlabel('Sample Coefficients')
-ylabel('Cut off Coefficients')
+xlabel('Sampling Coefficient')
+ylabel('Bandlimit Coefficient')
 zlabel('abs(grad(I_{error}))')
 colorbar;
 
