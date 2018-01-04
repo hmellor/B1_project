@@ -1,5 +1,11 @@
-%% Plot Filters
-%
+%% Plot Filters - Runs generate_filters() but also plots it
+% Inputs:   N - Number of taps
+%          fp - Pass band frequency (fraction of pi)
+%          fs - Stop band frequency (fraction of pi)
+%          wp - Pass band weight
+%          ws - Stop band weight
+%           n - integration steps
+% Outputs: filters - Matrix containing all 3 filters
 %%
 function filters = plot_filters(N,fp,fs,wp,ws,n)
 
@@ -7,7 +13,7 @@ filters = generate_filters(N,fp,fs,wp,ws,n);
 N=num2str(N);
 pb=[num2str((fp+fs)/2) '\pi'];
 tb=[num2str(fp) '\pi-' num2str(fs) '\pi'];
-titles = {['Fourier Filter (pass band: ' pb ')']...
+titles = {['Fourier Filter (taps: ' N ', pass band: ' pb ')']...
     ,['Least Squares Filter (taps: ' N ', transition: ' tb ')']...
     ,['Linear Program Filter (taps: ' N ', transition: ' tb ')']};
 titles = [titles titles];

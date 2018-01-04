@@ -1,20 +1,24 @@
 %% Plot Functions
-%
+% A script that samples func(), filters it with all the filters,
+% reconstructs each set of filtered samples and calculates the power spectrum
+% of each reconstruction.
 %%
-f=1000;
-N=51;
-fp=0.317;
-fs=0.36;
-wp=4;
-ws=1;
-blcoeff=1.3;
-fscoeff=2.5;
-n=1000;
-samplefreq=f*blcoeff*fscoeff;
-sampleperiod=1/samplefreq;
 
-filters = plot_filters(N,fp,fs,wp,ws,n);
-samples=sample(blcoeff,fscoeff,f);
+% Set variables for use in later code
+f=1000;                                 % function frequency (arbitrary)
+N=51;                                   % Number of taps
+fp=0.31;                                % pass frequency (as multiple of pi)
+fs=0.37;                                % stop frequency (as multiple of pi)
+wp=1;                                   % pass band weight
+ws=1;                                   % stop band weight
+bc=1.3;                                 % bandlimit frequency coefficientg
+sc=2.4;                                 % sample frequency coefficient
+n=1000;                                 % integration steps
+samplefreq=f*bc*sc;                     % sample frequency
+sampleperiod=1/samplefreq;              % sample period
+
+filters = plot_filters(N,fp,fs,wp,ws,n);% generate and plot all filters
+samples=sample(bc,sc,f);                % sample function
 
 for n=1:3
     filtered(:,1)=samples(:,2);
@@ -22,7 +26,7 @@ for n=1:3
 end
 
 for n=1:4
-    [tr,recon(:,n)]=reconstruct(filtered(:,n),sampleperiod,f,blcoeff);
+    [tr,recon(:,n)]=reconstruct(filtered(:,n)',sampleperiod,f,bc);
     [freq,Pyy(:,n)]=spectrum(filtered(:,n),samplefreq);
 end
 
