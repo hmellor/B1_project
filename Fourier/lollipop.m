@@ -7,10 +7,9 @@
   function lollipop(fileprefix,eta)
 
 % Generate (and save) h for plotting taps
-  kmax = length(eta);
-  h = [fliplr(eta(2:kmax,1)')';eta];
+  h = [fliplr(eta(2:end,1)')';eta];
   hfourier=h; save('hfourier','hfourier')
-  index = [-kmax+1:1:kmax-1];
+  index = (1:1:length(h))-(length(h)+1)/2;
 
 % Plot as lollipops
   figure(2)
