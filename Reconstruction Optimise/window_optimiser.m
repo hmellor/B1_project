@@ -21,8 +21,8 @@ type = ["No window" "Rectangular window" "Linear window"...
 % Evaluate calculation & and error for each window for range of cut offs
 for i = 1:5                             % iterate through each filter
     for j = 1:length(M)                 % iterate through window limits
-        E(i,j) = reconstructw(i,M(j),f,bc,sc); % evaluate error
-        timer = @()reconstructw(i,M(j),f,bc,sc); % set handle with no args
+        E(i,j) = reconstruct(f,bc,sc); % evaluate error
+        timer = @()reconstruct(f,bc,sc); % set handle with no args
         T(i,j) = timeit(timer);         % measure time to reconstruct
     end
     % Plot the data

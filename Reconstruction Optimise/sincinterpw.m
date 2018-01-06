@@ -10,23 +10,23 @@
 % UNFINISHED
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function reconstruction = sincinterpw(wt,M,tr,fs,ts,Ts,wm)
+  t=ones(length(ts),1);
+  k = (0:1:length(ts)-1)';
   for i=1:length(tr)  
-    t = tr(i)*ones(length(ts),1);
-    k = (0:1:length(ts)-1)';
+    t = tr(i)*t;
     p = (wm/pi)*(t-k*Ts);
-    pw = w(p);
-    c = Ts*wm/pi;                      % useful constant
-    reconstruction = c*fs(1:size(pw,1))*sinc(pw);
+    p = w(p);
+    reconstruction = Ts*wm/pi*fs(1:size(p,1))*sinc(p);
   end
   function pw = w(p)
       if wt > 1
           pw = find(abs(p)<M);
           if wt == 3
-             pw = p 
+              pw = 1-pw/M;
           elseif wt == 4
-              
+              pw = 1-(pw/M).^2;
           elseif wt == 5
-              
+              pw = cos(pi*p/(2*M));
           end
       else
           pw = p;
