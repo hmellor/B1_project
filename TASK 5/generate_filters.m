@@ -25,7 +25,7 @@ function filters = generate_filters(N,fp,fs,wp,ws,n)
     cd ../;
     cd LeastSq;
     delete *.fig
-    lsqlowpass(N,fp,fs,wp,ws,n);
+    lsqlowpass(N,fp,fs,wp*2.03,ws,n);
     load('hleastsq.mat');           % load filter into function workspace
     copyfile('*.fig',filterfolder)  % copy figures to more local directory
     % Generate linear program filter

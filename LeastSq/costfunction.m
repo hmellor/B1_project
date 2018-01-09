@@ -26,7 +26,7 @@
 % Do exactly the same, but now for the stop band
   g_stop = gactual(eta,thetastop);
   errsq_stop = (g_stop-gdstop).^2;
-  integral_stop = trapz(errsq_stop);
+  integral_stop = simps(errsq_stop);
 
 % Step 3
 % Weighted sum of integrals is the cost
