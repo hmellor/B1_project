@@ -4,5 +4,7 @@ function I = simps(f)
 % Output: I - value of numerical integration
 if mod(length(f),2)==1 && length(f)>1
     I=(1/3)*(f(1)+4*sum(f(2:2:end))+2*sum(f(3:2:end-1))+f(end));
+else 
+    ['Odd number of integration points required']
 end
 end
