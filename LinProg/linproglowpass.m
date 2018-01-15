@@ -47,7 +47,7 @@
 % Cream off the eta values, and eps0
   kmax = (N+1)/2;
   eta = x(1:kmax);
-  eps0 = x(kmax+1)
+  eps0 = x(kmax+1);
 
 % Work out the response values over all the range
   g   = gactual(eta,theta);

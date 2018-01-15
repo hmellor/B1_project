@@ -7,7 +7,6 @@
 %           f - frequency of signal
 %          bf - multiple of f to bandlimit at
 %          sf - multiple of fm to sample at
-%
 % Outputs: I - integral of error squared
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -15,7 +14,7 @@ function I = reconstructw(wt,M,f,bf,sf)
   fm     = bf*f;          % chose frequency above f to cut off at
   wm     = 2*pi*fm;           % bandlimit in radians
   tstart = 0;                 % start time: arbitrary
-  tstop  = 30/f;              % stop time: arbitrary
+  tstop  = 300/f;              % stop time: arbitrary
 
 % Choose sampling frequency
   fs = sf*fm;             % close to the minimum allowed
@@ -24,7 +23,6 @@ function I = reconstructw(wt,M,f,bf,sf)
 % Sample the function
   tsample = tstart:ts:tstop;
   fsample = func(tsample,f);
-  nsamples = length(fsample);
 
 % Determine times tr where you want reconstruction
   tstep = ts/10;              % say 10 per orig sample
@@ -38,3 +36,24 @@ function I = reconstructw(wt,M,f,bf,sf)
 % Quantify error
   errsq = err.^2;             % Square error values so no negative error
   I = trapz(tr,errsq);
+  %{
+  % Plot everything
+  figure()
+  hold off;
+  subplot(3,1,1),plot(tr, fo, '-','LineWidth',2,'Color',[0 0 .7]);hold on;
+  subplot(3,1,1),plot(tsample, fsample,'O','LineWidth',2,'Color',[.7 0 0]);
+  title('Original function with samples')
+  xlabel('Time (s)')
+  ylabel('Amplitude')
+  set(gca,'FontName','Arial')
+  subplot(3,1,2),plot(tr, fr, '-','LineWidth',2,'Color',[0 0.7 0]);
+  title('Reconstructed function')
+  xlabel('Time (s)')
+  ylabel('Amplitude')
+  set(gca,'FontName','Arial')
+  subplot(3,1,3),plot(tr, err,'-','LineWidth',2,'Color',[0.6 0 0.6]);
+  title('Error')
+  xlabel('Time (s)')
+  ylabel('Amplitude')
+  set(gca,'FontName','Arial')
+  %}

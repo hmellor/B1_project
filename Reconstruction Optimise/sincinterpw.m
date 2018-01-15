@@ -20,17 +20,17 @@ elseif wt == 2
   trm = 10*M;
   for k=0:length(ts)-1                    % loop through each sample
       trindex = (k+1)*10-9;    % centre index value, fix (round) becase can calculate as 0.00…1
-      upperindex = trindex + trm;
-      lowerindex = trindex - trm;     
-      if lowerindex < 1
-          lowerindex = 1;
+      last = trindex + trm;
+      first = trindex - trm;     
+      if first < 1
+          first = 1;
       end
-      if upperindex > length(tr)
-          upperindex = length(tr);
+      if last > length(tr)
+          last = length(tr);
       end
-      p = (wm/pi)*( tr(1, lowerindex: upperindex)-k*Ts);% vector of p values (width of window)
+      p = (wm/pi)*( tr(1, first: last)-k*Ts);% vector of p values (width of window)
       wsinc = Ts*wm/pi *fs(k+1)*sinc(p);                     % creates a vector which represents the sinc over tr
-      fr(1, lowerindex: upperindex) = fr(1, lowerindex: upperindex) + wsinc; 
+      fr(1, first: last) = fr(1, first: last) + wsinc; 
       % sums the sinc on windowed part of reconstructed curve
   end
 end

@@ -10,7 +10,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function I = reconstruct(f,bf,sf)
-
   fm     = bf*f;          % chose frequency above f to cut off at
   wm     = 2*pi*fm;           % bandlimit in radians
   tstart = 0;                 % start time: arbitrary
