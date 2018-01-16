@@ -8,8 +8,9 @@
 % Outputs: filters - Matrix containing all 3 filters
 %%
 function filters = plot_filters(N,fp,fs,wp,ws,n)
-
+% Generate filters
 filters = generate_filters(N,fp,fs,wp,ws,n);
+% Initiate plot metadata
 N=num2str(N);
 pb=[num2str((fp+fs)/2) '\pi'];
 tb=[num2str(fp) '\pi-' num2str(fs) '\pi'];
@@ -19,7 +20,9 @@ titles = {['Fourier Filter (taps: ' N ', pass band: ' pb ')']...
 titles = [titles titles];
 cd 'filter figures'
 files = dir('*.fig');
+% Initiage figure array
 fig=gobjects(1,6);
+% Open figures from filter figures directory and plot them as subplots
 for i=1:length(files)
     [filepath,name,ext] = fileparts(files(i).name);
     fig(i) = openfig([name ext]);
@@ -27,7 +30,7 @@ for i=1:length(files)
     j = [1 4 3 6 2 5];
     s = subplot(2,3,j(i));    
     copyobj(allchild(get(fig(1,i),'CurrentAxes')),s);
-    
+    % Title and label plots
     if mod(i,2)== 0
         xlabel('k');
         ylabel('Impulse response h[k]');
@@ -37,6 +40,7 @@ for i=1:length(files)
     end
     title(titles(j(i)))
 end
+% Close the unnecessary plots (if they exist)
 for i=1:6
     close(intersect(findall(0,'type','figure'),i))
 end

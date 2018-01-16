@@ -24,6 +24,7 @@ for i = 1:2                             % iterate through each filter
         j
         E(i,j) = reconstructw(i,M(j),f,bc,sc); % evaluate error
         if i==2
+            % Perform multiple timed runs to help remove outliers
             timed=zeros(1,r);
             for run = 1:r
                 tic
@@ -31,13 +32,16 @@ for i = 1:2                             % iterate through each filter
                 timed(run)=toc;
             end
         else
+            % Outliers are not frequent for the matric method
             tic
             reconstructw(i,M(j),f,bc,sc);
             timed=toc;
         end
-        T(i,j) = median(timed);         % measure time to reconstruct
+        T(i,j) = median(timed);         % take median value of times runs
     end
 end
+% Average the time values for the matrix method (they are supposed to be
+% constant)
 T(1,:)=mean(T(1,:));
 % Plot the data
 hold on

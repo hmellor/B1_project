@@ -9,6 +9,7 @@
 % Outputs:  T - vector of filter creation times
 %%
 function T = time_filters(N,fp,fs,wp,ws,n)
+    % Preallocate T
     T = 1:10;
     sourcefolder = pwd;
     cd 'Filter Figures';
@@ -18,6 +19,7 @@ function T = time_filters(N,fp,fs,wp,ws,n)
     cd ../;
     cd Fourier;
     delete *.fig
+    % time filter generation 10 times
     for r=1:10
         tic
         fourierlowpass(N,(fp+fs)/2,n);
@@ -27,6 +29,7 @@ function T = time_filters(N,fp,fs,wp,ws,n)
     cd ../;
     cd LeastSq;
     delete *.fig
+    % time filter generation 10 times
     for r=1:10
         tic
         lsqlowpass(N,fp,fs,wp*2.03,ws,n);
@@ -36,11 +39,13 @@ function T = time_filters(N,fp,fs,wp,ws,n)
     cd ../;
     cd LinProg;
     delete *.fig
+    % time filter generation 10 times
     for r=1:10
         tic
         linproglowpass(N,fp,fs,wp,ws,n);
         T(3,r)=toc;
     end
+    % Take median of generation times for each filter
     T = median(T,2);
     % Return to original directory
     cd ../;

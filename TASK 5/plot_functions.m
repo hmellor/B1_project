@@ -20,16 +20,19 @@ sampleperiod=1/samplefreq;              % sample period
 filters = plot_filters(N,fp,fs,wp,ws,n);% generate and plot all filters
 samples=sample(bc,sc,f);                % sample function
 
+% Create array of filtered and unfiltered samples
 for n=1:3
     filtered(:,1)=samples(:,2);
     filtered(:,n+1)=conv(samples(:,2),filters(:,n),'same');
 end
 
+% Create arrays of reconstructed samples and power spectra
 for n=1:4
     [tr,recon(:,n)]=reconstruct(filtered(:,n)',sampleperiod,f,bc);
     [freq,Pyy(:,n)]=spectrum(filtered(:,n),samplefreq);
 end
 
+% Plot all of the created arrays
 figure(100)
 titles=["Sampled Function","Reconstructed Function","Power Spectrum"...
     ,"Fourier Filtered Samples","Reconstructed Filtered Samples","Power Spectrum"...
